@@ -12,7 +12,7 @@ class Todo {
     }
 }
 
-let todoList = [];
+let todoArray = [];
 let userInput = '';
 
 
@@ -21,6 +21,7 @@ btnAdd.addEventListener('click',()=>{
     if(userInput !== ""){
         addTodo(userInput);
         userInput = "";
+        addToLocalStorage(todoArray);
     }
 });
 
@@ -31,14 +32,14 @@ todoInput.addEventListener('change',(e) => {
 
 
  function addTodo (task){
-    todoList.push(new Todo(task));
+    todoArray.push(new Todo(task));
     renderTodos();
  }
 
 
  function renderTodos(){
      list.innerHTML = "";
-     todoList.map((item) =>{
+     todoArray.map((item) =>{
         let li = document.createElement("li");
         let delBtn = document.createElement('button');
 
@@ -51,3 +52,11 @@ todoInput.addEventListener('change',(e) => {
         list.appendChild(li);
      })
  }
+
+ function addToLocalStorage(item){
+return localStorage.setItem('todos',JSON.stringify(item))
+ }
+
+ function getFromLocalStorage(item){
+    return JSON.parse(localStorage.getItem('todos'))
+ };
