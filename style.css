@@ -1,0 +1,103 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1e1e2f;
+    color: #f0f0f5;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #00e676;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 5px #000;
+}
+
+div {
+    margin-bottom: 1.5rem;
+}
+
+input.todo-task {
+    width: 280px;
+    padding: 12px;
+    font-size: 1.1rem;
+    border: 2px solid #333;
+    border-radius: 25px;
+    background-color: #2a2a3e;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input.todo-task:focus {
+    border-color: #00e676;
+    box-shadow: 0 0 8px #00e676;
+}
+
+button.add-btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #00e676;
+    border: none;
+    border-radius: 25px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 10px rgba(0, 230, 118, 0.3);
+}
+
+button.add-btn:hover {
+    background-color: #00c853;
+    box-shadow: 0 8px 15px rgba(0, 200, 83, 0.4);
+}
+
+ul.todo-list {
+    list-style: none;
+    padding: 0;
+    width: 90%;
+    max-width: 400px;
+    background-color: #282845;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+ul.todo-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    font-size: 1.2rem;
+    color: #f0f0f5;
+    border-bottom: 1px solid #444;
+    transition: background-color 0.3s ease;
+}
+
+ul.todo-list li:hover {
+    background-color: #3d3d5a;
+}
+
+ul.todo-list li:last-child {
+    border-bottom: none;
+}
+
+button.del-btn {
+    background-color: #ff5252;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 5px 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(255, 82, 82, 0.3);
+}
+
+button.del-btn:hover {
+    background-color: #d32f2f;
+    box-shadow: 0 6px 10px rgba(211, 47, 47, 0.5);
+}
