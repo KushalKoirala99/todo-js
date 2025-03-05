@@ -10,9 +10,15 @@ class Todo {
         this.task = task;
         this.id = crypto.randomUUID();
     }
+
+    static deleteTodo(id){
+        const todoArray = getFromLocalStorage();
+        const updatedArray = todoArray.filter(todo => todo.id !== id);
+        addToLocalStorage(updatedArray);
+        renderTodos();
+    }
 }
 
-let todoArray = [];
 let userInput = '';
 
 
@@ -21,10 +27,11 @@ btnAdd.addEventListener('click',()=>{
     if(userInput !== ""){
         addTodo(userInput);
         todoInput.value = "";
-        addToLocalStorage(todoArray);
         renderTodos()
     }
 });
+
+document.addEventListener('DOMContentLoaded', renderTodos);
 
 todoInput.addEventListener('change',(e) => {
       userInput =  e.target.value;
@@ -32,13 +39,16 @@ todoInput.addEventListener('change',(e) => {
 
 
  function addTodo (task){
-    todoArray.push(new Todo(task));
+    const todo = new Todo(task);
+    const todoArray = getFromLocalStorage();
+    todoArray.push(todo);
+    addToLocalStorage(todoArray);
  }
 
 
  function renderTodos(){
      list.innerHTML = "";
-     let todos = getFromLocalStorage(todoArray)
+     let todos = getFromLocalStorage()
      todos.map((item) =>{
       let todoElement = createElements(item);
       list.appendChild(todoElement);
@@ -62,6 +72,8 @@ return localStorage.setItem('todos',JSON.stringify(item))
    const delBtn = document.createElement('button');
    delBtn.innerText = 'x';
    delBtn.classList.add('del-btn')
+
+   delBtn.addEventListener('click', () => Todo.deleteTodo(todo.id))
    li.append(delBtn);
 
    return li
