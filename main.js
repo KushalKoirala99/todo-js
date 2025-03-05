@@ -20,36 +20,28 @@ let userInput = '';
 btnAdd.addEventListener('click',()=>{
     if(userInput !== ""){
         addTodo(userInput);
-        userInput = "";
+        todoInput.value = "";
         addToLocalStorage(todoArray);
+        renderTodos()
     }
 });
 
 todoInput.addEventListener('change',(e) => {
       userInput =  e.target.value;
-      e.target.value = "";
 })
 
 
  function addTodo (task){
     todoArray.push(new Todo(task));
-    renderTodos();
  }
 
 
  function renderTodos(){
      list.innerHTML = "";
-     todoArray.map((item) =>{
-        let li = document.createElement("li");
-        let delBtn = document.createElement('button');
-
-        delBtn.innerText = 'X';
-        delBtn.classList = 'del-btn';
-        console.dir(delBtn);
-        li.innerText = item.task;
-
-        li.append(delBtn)
-        list.appendChild(li);
+     let todos = getFromLocalStorage(todoArray)
+     todos.map((item) =>{
+      let todoElement = createElements(item);
+      list.appendChild(todoElement);
      })
  }
 
@@ -57,6 +49,20 @@ todoInput.addEventListener('change',(e) => {
 return localStorage.setItem('todos',JSON.stringify(item))
  }
 
- function getFromLocalStorage(item){
-    return JSON.parse(localStorage.getItem('todos'))
+ function getFromLocalStorage(){
+    const storedData = localStorage.getItem('todos');
+    return storedData ? JSON.parse(storedData) : [];
  };
+
+
+ function createElements(todo){
+   const li = document.createElement('li');
+   li.innerText = todo.task;
+
+   const delBtn = document.createElement('button');
+   delBtn.innerText = 'x';
+   delBtn.classList.add('del-btn')
+   li.append(delBtn);
+
+   return li
+ }
