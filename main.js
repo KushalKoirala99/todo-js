@@ -43,6 +43,7 @@ todoInput.addEventListener('change',(e) => {
     const todoArray = getFromLocalStorage();
     todoArray.push(todo);
     addToLocalStorage(todoArray);
+    userInput = "";
  }
 
 
@@ -67,14 +68,53 @@ return localStorage.setItem('todos',JSON.stringify(item))
 
  function createElements(todo){
    const li = document.createElement('li');
-   li.innerText = todo.task;
+   const div = document.createElement('div');
+   div.innerText = todo.task;
 
    const delBtn = document.createElement('button');
    delBtn.innerText = 'x';
    delBtn.classList.add('del-btn')
 
    delBtn.addEventListener('click', () => Todo.deleteTodo(todo.id))
+
+   li.appendChild(div)
    li.append(delBtn);
+   editTask(div,todo)
 
    return li
+ }
+
+ function editTask(div, todo){
+    div.addEventListener('dblclick',()=>{
+       const input = document.createElement('input');
+       input.type  = 'text';
+       input.value = div.innerText;
+
+       div.replaceWith(input);
+       input.focus();
+
+       input.addEventListener('blur',()=>{
+        replaceInput(input,todo);
+       })
+
+       input.addEventListener('keydown',(e)=>{
+           if(e.key === 'Enter'){
+            replaceInput(input,todo)
+           }
+       })
+    })
+
+ }
+
+
+ function replaceInput(input,todo){
+ const updateText = input.value.trim();
+
+ if(updateText === '' )return;
+
+ let todos = getFromLocalStorage();
+ const updateTodos = todos.map((i) => i.id === todo.id ? {...i, task: updateText} : i)
+ addToLocalStorage(updateTodos);
+
+ renderTodos();
  }

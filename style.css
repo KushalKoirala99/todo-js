@@ -56,48 +56,56 @@ button.add-btn:hover {
     box-shadow: 0 8px 15px rgba(0, 200, 83, 0.4);
 }
 
-ul.todo-list {
+ul {
     list-style: none;
-    padding: 0;
+    padding: 12px;
     width: 90%;
     max-width: 400px;
     background-color: #282845;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
 }
 
-ul.todo-list li {
+li {
     display: flex;
+    flex-flow: row;
     justify-content: space-between;
-    align-items: center;
-    padding: 15px;
+    padding: 8px 16px;
     font-size: 1.2rem;
     color: #f0f0f5;
     border-bottom: 1px solid #444;
     transition: background-color 0.3s ease;
 }
 
-ul.todo-list li:hover {
+li:hover {
     background-color: #3d3d5a;
 }
 
-ul.todo-list li:last-child {
-    border-bottom: none;
+li > div {
+    flex: 1;
+    padding: 0px;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
-button.del-btn {
+.del-btn {
+    height: auto;
     background-color: #ff5252;
     border: none;
     border-radius: 5px;
     color: #fff;
-    padding: 5px 12px;
+    padding: 0px 16px;
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 4px 6px rgba(255, 82, 82, 0.3);
 }
 
-button.del-btn:hover {
+.del-btn:hover {
     background-color: #d32f2f;
     box-shadow: 0 6px 10px rgba(211, 47, 47, 0.5);
 }
