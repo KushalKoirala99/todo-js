@@ -56,7 +56,7 @@ button.add-btn:hover {
     box-shadow: 0 8px 15px rgba(0, 200, 83, 0.4);
 }
 
-ul {
+.notEmpty{
     list-style: none;
     padding: 12px;
     width: 90%;
@@ -67,6 +67,10 @@ ul {
     display: flex;
     flex-flow: column;
     gap: 20px;
+} 
+
+.empty {
+    display: none;
 }
 
 li {
@@ -108,4 +112,22 @@ li > div {
 .del-btn:hover {
     background-color: #d32f2f;
     box-shadow: 0 6px 10px rgba(211, 47, 47, 0.5);
+}
+
+
+input.edit {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 6px 10px;
+    border: 2px solid #00e676;
+    border-radius: 5px;
+    background-color: #2a2a3e;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input.edit:focus {
+    border-color: #00c853;
+    box-shadow: 0 0 6px #00e676;
 }
